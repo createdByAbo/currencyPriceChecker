@@ -1,17 +1,27 @@
-﻿using System;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
+using System;
 
 namespace currencyPriceChecker
 {
     public class jsonController
     {
-        internal static Response getValFromJson(string json)
+        internal static double getValFromJson(string json)
         {
-            Response response = JsonConvert.DeserializeObject<Response>(json);
-            return response;
+            Console.WriteLine(json.Length);
+
+            if (json.Length > 80)
+            {
+                CurResponse response = JsonConvert.DeserializeObject<CurResponse>(json);
+                return response.Rates[0].price;
+            }
+            else
+            {
+                GldResponse response = JsonConvert.DeserializeObject<GldResponse>(json);
+                return response.price;
+            }
         }
     }
-    public partial class Response
+    public partial class CurResponse
     {
         [JsonProperty("table")]
         public string Table { get; set; }
@@ -35,6 +45,14 @@ namespace currencyPriceChecker
         public DateTimeOffset EffectiveDate { get; set; }
 
         [JsonProperty("mid")]
-        public double Mid { get; set; }
+        public double price { get; set; }
+    }
+
+    public partial class GldResponse
+    {
+        [JsonProperty("data")]
+        public DateTimeOffset date { get; set; }
+        [JsonProperty("cena")]
+        public double price { get; set; }
     }
 }

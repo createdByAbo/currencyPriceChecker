@@ -1,24 +1,21 @@
 ﻿using System;
 using System.IO;
 using System.Net;
+using System.Net.Http;
+using System.Threading.Tasks;
 
 namespace currencyPriceChecker
 {
     class httpRequester
     {
-        public static void getRequest(string currency)
+        static readonly HttpClient client = new HttpClient();
+        internal static async void getRequest(string link)
         {
             try
             {
-                WebRequest request = WebRequest.Create($"http://api.nbp.pl/api/exchangerates/rates/a/{currency}/last/1/?format=json");
-                HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-                Stream dataStream = response.GetResponseStream();
-                StreamReader reader = new StreamReader(dataStream);
-                string responseFromServer = reader.ReadToEnd();
-                Console.WriteLine(jsonController.getValFromJson(responseFromServer).Rates[0].Mid);
-                reader.Close();
-                dataStream.Close();
-                response.Close();
+                HttpResponseMessage response = await client.GetAsync(link);
+                string responseBody = await response.Content.ReadAsStringAsync();
+                Console.WriteLine(jsonController.getValFromJson(responseBody.Replace("[", "").Replace("]", "")));
             }
             catch (Exception e)
             {
