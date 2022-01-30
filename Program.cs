@@ -1,5 +1,5 @@
 ﻿using System;
-
+//TODO optimalize reapair returning mid value from api response 
 namespace currencyPriceChecker
 {
     class Program

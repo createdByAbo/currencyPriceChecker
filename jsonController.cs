@@ -1,23 +1,44 @@
 ﻿using System;
 using System.Collections.Generic;
-using Newtonsoft;
+
+using System.Globalization;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace currencyPriceChecker
 {
-    class jsonController
+    public class jsonController
     {
-        public Response getValFromJson(string json)
+        internal static Response getValFromJson(string json)
         {
             Response response = JsonConvert.DeserializeObject<Response>(json);
             return response;
         }
     }
-    public class Response
+    public partial class Response
     {
-        public string table { get; set; }
-        public string currency { get; set; }
-        public string code { get; set; }
-        public IList<string> rates { get; set; }
+        [JsonProperty("table")]
+        public string Table { get; set; }
+
+        [JsonProperty("currency")]
+        public string Currency { get; set; }
+
+        [JsonProperty("code")]
+        public string Code { get; set; }
+
+        [JsonProperty("rates")]
+        public Rate[] Rates { get; set; }
+    }
+
+    public partial class Rate
+    {
+        [JsonProperty("no")]
+        public string No { get; set; }
+
+        [JsonProperty("effectiveDate")]
+        public DateTimeOffset EffectiveDate { get; set; }
+
+        [JsonProperty("mid")]
+        public double Mid { get; set; }
     }
 }
