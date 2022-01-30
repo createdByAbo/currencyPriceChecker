@@ -8,15 +8,26 @@ namespace currencyPriceChecker
     {
         public static void getRequest(string currency)
         {
-            WebRequest request = WebRequest.Create($"http://api.nbp.pl/api/exchangerates/rates/a/{currency}/last/1/?format=json");
-            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-            Stream dataStream = response.GetResponseStream();
-            StreamReader reader = new StreamReader(dataStream);
-            string responseFromServer = reader.ReadToEnd();
-            Console.WriteLine(responseFromServer);
-            reader.Close();
-            dataStream.Close();
-            response.Close();
+            try
+            {
+                WebRequest request = WebRequest.Create($"http://api.nbp.pl/api/exchangerates/rates/a/{currency}/last/1/?format=json");
+                HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+                Stream dataStream = response.GetResponseStream();
+                StreamReader reader = new StreamReader(dataStream);
+                string responseFromServer = reader.ReadToEnd();
+                Console.WriteLine(responseFromServer);
+                reader.Close();
+                dataStream.Close();
+                response.Close();
+            }
+            catch (Exception e)
+            {
+                Console.Beep();
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.Write("Error");
+                Console.Write(e);
+                Console.ResetColor();
+            }
         }
     }
 }
