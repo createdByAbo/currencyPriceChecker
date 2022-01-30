@@ -6,7 +6,7 @@ namespace currencyPriceChecker
     {
         static void Main(string[] args)
         {
-            httpRequester.request(Console.ReadLine());
+            httpRequester.getRequest(Console.ReadLine());
         }
     }
 }

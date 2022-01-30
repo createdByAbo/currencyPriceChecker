@@ -6,7 +6,7 @@ namespace currencyPriceChecker
 {
     class httpRequester
     {
-        public static void request(string currency)
+        public static void getRequest(string currency)
         {
             WebRequest request = WebRequest.Create($"http://api.nbp.pl/api/exchangerates/rates/a/{currency}/last/1/?format=json");
             HttpWebResponse response = (HttpWebResponse)request.GetResponse();
