@@ -7,7 +7,6 @@ namespace currencyPriceChecker
     {
         internal static double getValFromJson(string json)
         {
-            Console.WriteLine(json.Length);
 
             if (json.Length > 80)
             {
