@@ -12,14 +12,7 @@ namespace currencyPriceChecker
             {
                 HttpResponseMessage response = await client.GetAsync(link);
                 string responseBody = await response.Content.ReadAsStringAsync();
-                if (responseBody[0] == '[' && responseBody[responseBody.Length - 1] == ']')
-                {
-                    Console.WriteLine($"price is {jsonController.getValFromJson(responseBody.Replace("[", "").Replace("]", ""))} PLN");
-                }
-                else
-                {
-                    Console.WriteLine($"price is {jsonController.getValFromJson(responseBody)} PLN");
-                }
+                Console.WriteLine(jsonController.getValFromJson(responseBody));
             }
             catch (Exception e)
             {
