@@ -15,7 +15,7 @@ namespace currencyPriceChecker
                 Stream dataStream = response.GetResponseStream();
                 StreamReader reader = new StreamReader(dataStream);
                 string responseFromServer = reader.ReadToEnd();
-                Console.WriteLine(jsonController.getValFromJson(responseFromServer).Rates);
+                Console.WriteLine(jsonController.getValFromJson(responseFromServer).Rates[0].Mid);
                 reader.Close();
                 dataStream.Close();
                 response.Close();
