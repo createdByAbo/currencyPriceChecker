@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System; 
 using System.Net.Http;
 
 namespace currencyPriceChecker
@@ -14,11 +14,11 @@ namespace currencyPriceChecker
                 string responseBody = await response.Content.ReadAsStringAsync();
                 if (responseBody[0] == '[' && responseBody[responseBody.Length - 1] == ']')
                 {
-                    Console.WriteLine(jsonController.getValFromJson(responseBody.Replace("[", "").Replace("]", "")));
+                    Console.WriteLine($"price is {jsonController.getValFromJson(responseBody.Replace("[", "").Replace("]", ""))} PLN");
                 }
                 else
                 {
-                    Console.WriteLine(jsonController.getValFromJson(responseBody));
+                    Console.WriteLine($"price is {jsonController.getValFromJson(responseBody)} PLN");
                 }
             }
             catch (Exception e)
