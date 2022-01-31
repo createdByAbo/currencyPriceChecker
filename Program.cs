@@ -26,7 +26,6 @@ namespace currencyPriceChecker
                 }
                 else if (userInput == "/s")
                 {
-                    stop = true;
                     break;
                 }
                 else
