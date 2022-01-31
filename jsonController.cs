@@ -20,7 +20,8 @@ namespace currencyPriceChecker
                     GldResponse response = JsonConvert.DeserializeObject<GldResponse>(json.Replace("[", "").Replace("]", ""));
                     return $"Price is: {response.price} PLN";
                 }
-            }else
+            }
+            else
             {
                 return $"RAW OUTPUT BECOUSE API RESPONDED BAD DATA FORMAT OR DATA NOT FOUND / BED REQUEST  -> {json}";
             }
