@@ -23,7 +23,7 @@ namespace currencyPriceChecker
             }
             else
             {
-                return $"RAW OUTPUT BECOUSE API RESPONDED BAD DATA FORMAT OR DATA NOT FOUND / BED REQUEST  -> {json}";
+                return $"RAW OUTPUT BECOUSE API RESPONDED BAD DATA FORMAT OR DATA NOT FOUND / BAD REQUEST  -> {json}";
             }
             
         }

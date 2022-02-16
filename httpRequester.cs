@@ -19,7 +19,7 @@ namespace currencyPriceChecker
                 Console.Beep();
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.Write("Error");
-                Console.Write(e);
+                Console.Write(e.Message);
                 Console.ResetColor();
             }
         }
